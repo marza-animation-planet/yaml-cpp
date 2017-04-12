@@ -51,7 +51,7 @@ prjs = [
 ]
 
 
-excons.AddHelpOptions(yamlcpp="""YAMLCPP OPTIONS"
+excons.AddHelpOptions(yamlcpp="""YAMLCPP OPTIONS
   yamlcpp-static=0|1   : Toggle between static or shared library [1]
   yamlcpp-suffix=<str> : Library name suffix                     []""")
 
