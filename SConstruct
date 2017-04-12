@@ -31,6 +31,7 @@ def RequireYamlCpp(env):
    env.Append(CPPPATH=[out_incdir])
    env.Append(LIBPATH=[out_libdir])
    excons.Link(env, YamlCppName(), static=static_build, force=True, silent=True)
+   boost.Require()(env)
 
 
 prjs = [
