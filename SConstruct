@@ -26,7 +26,7 @@ def YamlCppPath():
    return out_libdir + "/" + libname
 
 def RequireYamlCpp(env):
-   if sys.platform == "win32" and not staticlib:
+   if sys.platform == "win32" and not static_build:
       env.Append(CPPDEFINES=["YAML_CPP_DLL"])
    env.Append(CPPPATH=[out_incdir])
    env.Append(LIBPATH=[out_libdir])
