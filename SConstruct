@@ -22,15 +22,14 @@ def YamlCppPath():
    if sys.platform == "win32":
       libname = name + ".lib"
    else:
-      libname = name + (".a" if static_build else excons.SharedLibraryLinkExt())
+      libname = "lib" + name + (".a" if static_build else excons.SharedLibraryLinkExt())
    return out_libdir + "/" + libname
 
 def RequireYamlCpp(env):
    if sys.platform == "win32" and not static_build:
       env.Append(CPPDEFINES=["YAML_CPP_DLL"])
    env.Append(CPPPATH=[out_incdir])
-   env.Append(LIBPATH=[out_libdir])
-   excons.Link(env, YamlCppName(), static=static_build, force=True, silent=True)
+   excons.Link(env, YamlCppPath(), static=static_build, force=True, silent=True)
    boost.Require()(env)
 
 
