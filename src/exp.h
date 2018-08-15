@@ -20,6 +20,10 @@ namespace YAML {
 
 namespace Exp {
 // misc
+inline const RegEx& Empty() {
+  static const RegEx e;
+  return e;
+}
 inline const RegEx& Space() {
   static const RegEx e = RegEx(' ');
   return e;
@@ -131,7 +135,7 @@ inline const RegEx& URI() {
   return e;
 }
 inline const RegEx& Tag() {
-  static const RegEx e = Word() || RegEx("#;/?:@&=+$_.~*'", REGEX_OR) ||
+  static const RegEx e = Word() || RegEx("#;/?:@&=+$_.~*'()", REGEX_OR) ||
                          (RegEx('%') + Hex() + Hex());
   return e;
 }
@@ -165,6 +169,15 @@ inline const RegEx& EndScalarInFlow() {
   return e;
 }
 
+inline const RegEx& ScanScalarEndInFlow() {
+  static const RegEx e = (EndScalarInFlow() || (BlankOrBreak() + Comment()));
+  return e;
+}
+
+inline const RegEx& ScanScalarEnd() {
+  static const RegEx e = EndScalar() || (BlankOrBreak() + Comment());
+  return e;
+}
 inline const RegEx& EscSingleQuote() {
   static const RegEx e = RegEx("\'\'");
   return e;
@@ -187,7 +200,7 @@ inline const RegEx& Chomp() {
 
 // and some functions
 std::string Escape(Stream& in);
-}
+}  // namespace Exp
 
 namespace Keys {
 const char Directive = '%';
@@ -203,7 +216,7 @@ const char LiteralScalar = '|';
 const char FoldedScalar = '>';
 const char VerbatimTagStart = '<';
 const char VerbatimTagEnd = '>';
-}
-}
+}  // namespace Keys
+}  // namespace YAML
 
 #endif  // EXP_H_62B23520_7C8E_11DE_8A39_0800200C9A66
