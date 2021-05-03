@@ -3,6 +3,8 @@ import sys
 import glob
 import excons
 import excons.tools.boost as boost
+import SCons.Script # pylint: disable=import-error
+
 
 env = excons.MakeBaseEnv()
 
@@ -58,5 +60,5 @@ excons.AddHelpOptions(yamlcpp="""YAMLCPP OPTIONS
 excons.DeclareTargets(env, prjs)
 
 
-Export("YamlCppName YamlCppPath RequireYamlCpp")
+SCons.Script.Export("YamlCppName YamlCppPath RequireYamlCpp")
 
