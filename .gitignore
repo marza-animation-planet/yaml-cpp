@@ -1,8 +1,8 @@
 build/
+/tags
 
 /.build/
 /release/
 /debug/
 *.dblite
 excons.cache
-
