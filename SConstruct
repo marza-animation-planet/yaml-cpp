@@ -42,7 +42,6 @@ prjs = [
    {  "name": YamlCppName(),
       "alias": "yamlcpp",
       "type": ("sharedlib" if not static_build else "staticlib"),
-      "symvis": "default",
       "version": "0.6.2",
       "soname": "lib%s.so.0" % YamlCppName(),
       "install_name": "lib%s.0.dylib" % YamlCppName(),
